@@ -1,2 +1,2 @@
-# Web Audio Equalizer
+# JP App Build Starter
 
