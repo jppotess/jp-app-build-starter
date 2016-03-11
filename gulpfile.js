@@ -112,31 +112,31 @@ gulp.task("babel", function() {
 
 //Library
 gulp.task('vendor', function() {
-    return gulp.src("src/vendor/**/*.*", {base: 'src'})
+    return gulp.src("src/vendor/**/*.*")
     .pipe(gulp.dest("app/"));
 })
 
-// // Clean Task
-// gulp.task('cleanFull', function(callback) {
-//     del('app');
-//     return cache.clearAll(callback);
-// })
+// Clean Task
+gulp.task('cleanFull', function(callback) {
+    del('app/**/*');
+    return cache.clearAll(callback);
+})
 
 
-// // Clean Task - except images
-// gulp.task('clean', function(callback){
-//     del(['app/**/*', '!app/images', '!app/images/**/*'], callback)
-// })
+// Clean Task - except images
+gulp.task('clean', function(callback){
+    del(['app/**/*', '!app/images', '!app/images/**/*'], callback)
+})
 
 
-// // Build Task
-// gulp.task('build', function(callback){
-//     runSequence('clean',
-//         ['jade', 'sass', 'babel', 'vendor'],
-//         callback
-//     )
-// })
-gulp.task('build', ['sass', 'babel', 'jade', 'vendor'], function(){});
+// Build Task
+gulp.task('build', function(callback){
+    runSequence('cleanFull',
+        ['jade', 'sass', 'babel', 'vendor'],
+        callback
+    )
+})
+
 
 
 // Watch Task
